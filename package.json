@@ -7,6 +7,7 @@
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\" --no-error-on-unmatched-pattern",
     "test": "turbo test --filter='./services/*'",
+    "prepare": "husky",
     "service": "bun create cloudflare@latest"
   },
   "devDependencies": {
