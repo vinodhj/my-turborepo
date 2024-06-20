@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "deploy": "wrangler deploy",
-    "dev": "wrangler dev",
+    "dev": "wrangler dev  --name cf-worker --port 8686 --inspector-port 9697",
     "start": "wrangler dev",
-    "test": "vitest",
-    "cf-typegen": "wrangler types"
+    "test": "vitest run",
+    "cf-typegen": "wrangler types",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.4.5",
@@ -15,5 +16,9 @@
     "typescript": "^5.4.5",
     "vitest": "1.5.0",
     "wrangler": "^3.60.3"
+  },
+  "dependencies": {
+    "graphql-tag": "^2.12.6",
+    "graphql-yoga": "^5.4.0"
   }
 }
