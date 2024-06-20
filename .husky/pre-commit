@@ -1,0 +1,14 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+
+# Run format and lint
+bun run format
+bun run lint
+bun run test
+# Automatically add any changes made by formatting and linting
+git add .
+
+# Optional: if you want to check which files have been changed, uncomment the next line
+# git status
+
