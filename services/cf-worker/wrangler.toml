@@ -4,6 +4,11 @@ main = "src/index.ts"
 compatibility_date = "2024-06-14"
 compatibility_flags = ["nodejs_compat"]
 
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "prod-d1-tutorial"
+database_id = "94737357-b88c-4ef6-9bbe-eaef2ea336bd"
+
 # Automatically place your workloads in an optimal location to minimize latency.
 # If you are running back-end logic in a Worker, running it closer to your back-end infrastructure
 # rather than the end user may result in better performance.
