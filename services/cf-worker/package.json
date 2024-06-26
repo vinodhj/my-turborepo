@@ -9,7 +9,8 @@
     "start": "wrangler dev",
     "test": "vitest run",
     "cf-typegen": "wrangler types",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "generate": "graphql-codegen"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.4.5",
@@ -19,7 +20,10 @@
     "wrangler": "^3.60.3"
   },
   "dependencies": {
-    "graphql-tag": "^2.12.6",
-    "graphql-yoga": "^5.4.0"
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/typescript": "^4.0.7",
+    "@graphql-codegen/typescript-resolvers": "^4.1.0",
+    "dotenv": "^16.4.5",
+    "lodash": "^4.17.21"
   }
 }

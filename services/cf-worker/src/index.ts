@@ -1,6 +1,11 @@
 import { YogaSchemaDefinition, createYoga } from 'graphql-yoga';
 import { CfWorkersDataSource } from './datasources';
 import { schema } from './schemas';
+import { drizzle } from 'drizzle-orm/d1';
+
+export interface Env {
+  DB: D1Database;
+}
 
 export interface YogaInitialContext {
   datasources: {
@@ -11,9 +16,11 @@ export interface YogaInitialContext {
 export default {
   async fetch(request: Request, env: Env) {
     const url = new URL(request.url);
+    const db = drizzle(env.DB);
     const datasources = {
       cfWorkersDataSource: new CfWorkersDataSource(),
     };
+
     const yoga = createYoga({
       schema: schema as YogaSchemaDefinition<object, YogaInitialContext>,
       landingPage: false,
