@@ -1,0 +1,47 @@
+name: Enhancement
+description: Request an enhancement
+title: "[Enhancement]: "
+labels: ["product", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to request an enhancement
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: Current Behavior
+    validations:
+      required: true
+  - type: textarea
+    id: desired-enhancement
+    attributes:
+      label: Desired Enhancement
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+  - type: dropdown
+    id: potential-impact
+    attributes:
+      label: Potential Impact
+      description: |
+        Critical: Indicates enhancements that will significantly improve core functionality, user satisfaction, performance, or security. These changes are expected to have a substantial positive effect on the project's success or user experience.
+        High: Applies to enhancements that will greatly improve important features or performance aspects. While not critical, these improvements are highly valuable and likely to positively affect user engagement or operational efficiency.
+        Medium: For enhancements that provide noticeable improvements to the project or product, affecting some users or specific use cases. These changes are beneficial but not essential.
+        Low: Used for minor enhancements that have a marginal effect on the project or product, such as small usability tweaks or aesthetic changes. While these improvements are positive, they are not urgent and have minimal effect on overall performance or user experience.
+      options:
+        - Critical (potential-impact-critical)
+        - High (potential-impact-high)
+        - Medium (potential-impact-medium)
+        - Low (potential-impact-low)
+      default: 0
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      # description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.

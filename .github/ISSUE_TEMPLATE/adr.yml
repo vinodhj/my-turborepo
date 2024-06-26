@@ -1,0 +1,12 @@
+name: ADR
+description: Architectural Decision Record
+title: "[ADR]: [Short Description of Decision]"
+labels: ["product", "adr"]
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Describe the issue that needs to be resolved by this architectural decision. Include any relevant context, technical or otherwise, that contributes to the decision.
+    validations:
+      required: true

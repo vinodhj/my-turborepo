@@ -1,0 +1,57 @@
+name: Feature Request
+description: Suggest an idea for this project
+title: "[feature request]: "
+labels: ["product", "feature-request"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: "Provide a detailed description of the feature you're suggesting. You can also attach files if needed."
+    validations:
+      required: true
+  - type: textarea
+    id: problem-challenge
+    attributes:
+      label: Problem or Challenge
+      description: "Describe the problem or challenge you are facing that this feature would address."
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: "Describe your proposed solution or idea in detail."
+    validations:
+      required: true
+  - type: textarea
+    id: benefits
+    attributes:
+      label: Benefits
+      description: "Outline the benefits or positive outcomes your proposed solution would bring."
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: |
+        "Select the priority level of this feature request."
+        Critical: For features that are essential to the project's success and should be implemented immediately.
+        High: For features that significantly improve functionality or user experience and should be implemented soon.
+        Medium: For features that provide noticeable improvements but are not critical to the project's success.
+        Low: For minor features that have a marginal effect on functionality or user experience.
+      options:
+        - Critical (priority-critical)
+        - High (priority-high)
+        - Medium (priority-medium)
+        - Low (priority-low)
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: "Add any other context or screenshots about the feature request here."
+    validations:
+      required: false
