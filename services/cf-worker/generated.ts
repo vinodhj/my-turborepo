@@ -28,6 +28,7 @@ export type Enquiry = {
   created_at: Scalars['DateTime']['output'];
   email: Scalars['String']['output'];
   id: Scalars['ID']['output'];
+  json_text: Scalars['JSON']['output'];
   message?: Maybe<Scalars['String']['output']>;
   selected_services: Array<Service>;
   updated_at: Scalars['DateTime']['output'];
@@ -185,6 +186,7 @@ export type EnquiryResolvers<ContextType = any, ParentType extends ResolversPare
   created_at?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  json_text?: Resolver<ResolversTypes['JSON'], ParentType, ContextType>;
   message?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   selected_services?: Resolver<Array<ResolversTypes['Service']>, ParentType, ContextType>;
   updated_at?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;

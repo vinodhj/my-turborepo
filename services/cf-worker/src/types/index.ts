@@ -17,6 +17,7 @@ export const typeDefs = gql`
     email: String!
     message: String
     selected_services: [Service!]!
+    json_text: JSON!
     created_at: DateTime!
     updated_at: DateTime!
   }

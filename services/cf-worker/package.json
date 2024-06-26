@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "deploy": "wrangler deploy",
-    "dev": "wrangler dev  --name cf-worker --port 8686 --inspector-port 9697",
+    "dev": "wrangler dev  --name cf-worker --port 8686 --inspector-port 9697 --persist-to=../.db-local",
     "format": "prettier --write \"**/*.{ts,tsx,md,json,mts}\" --no-error-on-unmatched-pattern",
     "start": "wrangler dev",
     "test": "vitest run",
     "cf-typegen": "wrangler types",
     "lint": "eslint .",
-    "generate": "graphql-codegen"
+    "generate": "graphql-codegen",
+    "migrate": "./migrate.sh"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.4.5",
