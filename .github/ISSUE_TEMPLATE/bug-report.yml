@@ -1,0 +1,71 @@
+name: Bug Report
+description: Create a report to help us improve
+title: "[bug]: "
+labels: ["product", "bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: "Provide a detailed description of the bug. You can also attach files if needed."
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: "Please list the steps to reproduce the issue in numbered order, starting from the initial setup to the moment the issue occurs. Include specific details like page names, buttons clicked, and exact inputs used. If the issue doesn’t always happen, mention that and estimate its frequency (e.g., '2 out of 5 times')."
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: "Describe what you expected to happen."
+    validations:
+      required: true
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: "Describe what actually happened."
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: |
+        "Select the severity level of the bug."
+        Critical: For issues that cause system failure, data loss, or security vulnerabilities.
+        High: For issues that significantly affect functionality or performance.
+        Medium: For issues that have a moderate impact on functionality or user experience.
+        Low: For minor issues that have little impact on functionality or user experience.
+      options:
+        - Critical (severity-critical)
+        - High (severity-high)
+        - Medium (severity-medium)
+        - Low (severity-low)
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: "Specify the environment in which the bug was encountered (e.g., Production, Staging)."
+    validations:
+      required: true
+  - type: input
+    id: os-browser-version
+    attributes:
+      label: OS/Browser/Version
+      description: "Provide details about the OS, browser, and version used when the bug was encountered."
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: "Add any other context about the problem here."
+    validations:
+      required: false

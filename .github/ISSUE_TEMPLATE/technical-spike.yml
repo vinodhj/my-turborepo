@@ -1,0 +1,56 @@
+name: Technical Spike
+description: Create a time-bound Technical Spike
+title: "[Technical Spike]: "
+labels: ["product", "technical-spike"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Summarize the goal of the tech spike and what it aims to explore or solve.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: Outline the boundaries of the investigation, including any specific technologies, patterns, or areas to be explored.
+    validations:
+      required: true
+  - type: textarea
+    id: methodology
+    attributes:
+      label: Methodology
+      description: Describe the approach that will be taken to conduct the spike, including any tools, environments, or resources that will be used.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-outcome
+    attributes:
+      label: Expected Outcome
+      description: Detail what results or findings are anticipated from the tech spike, including any criteria for success.
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Timebox
+      description: |
+        Select the amount of time allocated for this tech spike.
+        Quarter day: Indicates a brief exploration expected to take no more than a few hours
+        Half day: Indicates a brief exploration expected to take no more than half a working day.
+        Full day: Used for investigations that are expected to be completed within a single working day.
+      options:
+        - Quarter day (timebox-quarter-day)
+        - Half day (timebox-half-day)
+        - Full day (timebox-1-day)
+      default: 0
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+  - type: markdown
+    attributes:
+      value: This issue can be closed by a PR that contains the ADR of this outcome.

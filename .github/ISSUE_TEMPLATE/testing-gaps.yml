@@ -1,0 +1,78 @@
+name: Testing Gaps
+description: Identify and address gaps in testing coverage or methodology
+title: "[testing]: "
+labels: ["product", "testing-gaps"]
+body:
+  - type: textarea
+    id: overview-of-testing-gaps
+    attributes:
+      label: Overview of Testing Gaps
+      description: "Provide a detailed overview of identified gaps in the current testing strategy. You can also attach files if needed."
+    validations:
+      required: true
+  - type: textarea
+    id: scenario-description
+    attributes:
+      label: Missing Test Cases/Scenarios - Scenario Description
+      description: "Detail each missing test case or scenario identified."
+    validations:
+      required: true
+  - type: textarea
+    id: rationale-for-inclusion
+    attributes:
+      label: Missing Test Cases/Scenarios - Rationale for Inclusion
+      description: "Explain why these missing test cases or scenarios are important and should be included."
+    validations:
+      required: true
+  - type: textarea
+    id: suggestions-for-testing-improvements
+    attributes:
+      label: Suggestions for Testing Improvements
+      description: "Provide suggestions for improving testing coverage and methodology."
+    validations:
+      required: true
+  - type: input
+    id: methodology-tool-enhancements
+    attributes:
+      label: Methodology/Tool Enhancements
+      description: "Suggest specific methodologies or tools that could enhance testing efforts."
+    validations:
+      required: false
+  - type: input
+    id: additional-resources-needed
+    attributes:
+      label: Additional Resources Needed
+      description: "Identify any additional resources (personnel, software, hardware) needed to address testing gaps."
+    validations:
+      required: false
+  - type: textarea
+    id: potential-risks-issues-addressed
+    attributes:
+      label: Potential Risks/Issues Addressed
+      description: "Describe potential risks or issues that addressing these testing gaps could mitigate."
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: |
+        "Select the priority level of addressing these testing gaps."
+        Critical: For issues that need to be addressed right away due to their impact on operations or severe user experience degradation.
+        High: Applies to issues that significantly affect functionality or performance and should be resolved in the next release cycle.
+        Medium: For issues that have a moderate impact and should be fixed after high-priority issues are addressed.
+        Low: Used for minor issues that have little impact on functionality or user experience, to be addressed as time allows.
+      options:
+        - Critical (priority-critical)
+        - High (priority-high)
+        - Medium (priority-medium)
+        - Low (priority-low)
+    validations:
+      required: true
+  - type: textarea
+    id: additional-notes
+    attributes:
+      label: Additional Notes
+      description: "Add any other context or notes relevant to the testing gaps and proposed improvements."
+    validations:
+      required: false

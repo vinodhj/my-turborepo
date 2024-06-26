@@ -1,0 +1,47 @@
+name: Documentation Issue
+description: Submit an issue in the Documentation
+title: "[Documentation Issue]: "
+labels: ["product", "documentation-issue"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report an issue in the documentation.
+  - type: input
+    id: url
+    attributes:
+      label: Documentation URL
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+    validations:
+      required: true
+  - type: textarea
+    id: suggested-changes
+    attributes:
+      label: Suggested Changes
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: |
+        Critical: Use for issues that cause a system crash or major malfunction, requiring immediate attention.
+        High: Use for issues that significantly affect functionality or performance and should be resolved in the next release cycle.
+        Medium: Use for issues that have a moderate impact on functionality or user experience, to be fixed after high-priority issues are addressed.
+        Low: Use for minor issues that have little impact on functionality or user experience, to be addressed as time allows.
+      options:
+        - Critical (priority-critical)
+        - High (priority-high)
+        - Medium (priority-medium)
+        - Low (priority-low)
+      default: 0
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      # description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
