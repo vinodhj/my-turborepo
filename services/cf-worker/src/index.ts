@@ -18,7 +18,7 @@ export default {
     const url = new URL(request.url);
     const db = drizzle(env.DB);
     const datasources = {
-      cfWorkersDataSource: new CfWorkersDataSource(),
+      cfWorkersDataSource: new CfWorkersDataSource({ db }),
     };
 
     const yoga = createYoga({
@@ -27,7 +27,7 @@ export default {
       graphqlEndpoint: '/graphql',
       context: () => ({
         datasources: {
-          cfWorkersDataSource: new CfWorkersDataSource(),
+          cfWorkersDataSource: new CfWorkersDataSource({ db }),
         },
       }),
     });
