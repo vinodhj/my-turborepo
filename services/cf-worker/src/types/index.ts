@@ -35,7 +35,7 @@ export const typeDefs = gql`
   }
 
   type Query {
-    enquiry(id: ID!): Enquiry
+    enquiries(ids: [ID]): [Enquiry]
     services(ids: [ID]): [Service]
   }
 

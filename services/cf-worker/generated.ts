@@ -6,7 +6,6 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: 
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
-export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string };
@@ -50,12 +49,12 @@ export type MutationSubmitEnquiryArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  enquiry?: Maybe<Enquiry>;
+  enquiries?: Maybe<Array<Maybe<Enquiry>>>;
   services?: Maybe<Array<Maybe<Service>>>;
 };
 
-export type QueryEnquiryArgs = {
-  id: Scalars['ID']['input'];
+export type QueryEnquiriesArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
 };
 
 export type QueryServicesArgs = {
@@ -208,7 +207,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  enquiry?: Resolver<Maybe<ResolversTypes['Enquiry']>, ParentType, ContextType, RequireFields<QueryEnquiryArgs, 'id'>>;
+  enquiries?: Resolver<Maybe<Array<Maybe<ResolversTypes['Enquiry']>>>, ParentType, ContextType, Partial<QueryEnquiriesArgs>>;
   services?: Resolver<Maybe<Array<Maybe<ResolversTypes['Service']>>>, ParentType, ContextType, Partial<QueryServicesArgs>>;
 };
 
