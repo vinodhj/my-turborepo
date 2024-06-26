@@ -51,10 +51,15 @@ export type MutationSubmitEnquiryArgs = {
 export type Query = {
   __typename?: 'Query';
   enquiry?: Maybe<Enquiry>;
+  services?: Maybe<Array<Maybe<Service>>>;
 };
 
 export type QueryEnquiryArgs = {
   id: Scalars['ID']['input'];
+};
+
+export type QueryServicesArgs = {
+  ids?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
 };
 
 export type Service = {
@@ -204,6 +209,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   enquiry?: Resolver<Maybe<ResolversTypes['Enquiry']>, ParentType, ContextType, RequireFields<QueryEnquiryArgs, 'id'>>;
+  services?: Resolver<Maybe<Array<Maybe<ResolversTypes['Service']>>>, ParentType, ContextType, Partial<QueryServicesArgs>>;
 };
 
 export type ServiceResolvers<ContextType = any, ParentType extends ResolversParentTypes['Service'] = ResolversParentTypes['Service']> = {

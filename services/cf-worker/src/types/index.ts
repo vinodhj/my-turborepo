@@ -36,6 +36,7 @@ export const typeDefs = gql`
 
   type Query {
     enquiry(id: ID!): Enquiry
+    services(ids: [ID]): [Service]
   }
 
   type Mutation {
