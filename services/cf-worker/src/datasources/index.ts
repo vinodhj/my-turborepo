@@ -14,7 +14,7 @@ export class CfWorkersDataSource {
     this.db = db;
     this.serviceLoader = new DataLoader(async (ids: readonly string[]) => {
       // batch fetch
-      return await this.servicesByBatchIds(ids as string[]);
+      return this.servicesByBatchIds(ids as string[]);
     });
   }
 
