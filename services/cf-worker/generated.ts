@@ -6,6 +6,7 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: 
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string };
@@ -33,6 +34,18 @@ export type Enquiry = {
   updated_at: Scalars['DateTime']['output'];
 };
 
+export type EnquiryConnection = {
+  __typename?: 'EnquiryConnection';
+  edges: Array<EnquiryEdge>;
+  pageInfo: PageInfo;
+};
+
+export type EnquiryEdge = {
+  __typename?: 'EnquiryEdge';
+  cursor: Scalars['String']['output'];
+  node: Enquiry;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createService: Service;
@@ -47,19 +60,43 @@ export type MutationSubmitEnquiryArgs = {
   input?: InputMaybe<SubmitEnquiryInput>;
 };
 
+export type PageInfo = {
+  __typename?: 'PageInfo';
+  endCursor?: Maybe<Scalars['String']['output']>;
+  hasNextPage: Scalars['Boolean']['output'];
+};
+
 export type Query = {
   __typename?: 'Query';
-  enquiries?: Maybe<Array<Maybe<Enquiry>>>;
-  services?: Maybe<Array<Maybe<Service>>>;
+  enquiries?: Maybe<EnquiryConnection>;
+  services?: Maybe<ServiceConnection>;
 };
 
 export type QueryEnquiriesArgs = {
-  ids?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  ids?: InputMaybe<Array<Scalars['ID']['input']>>;
+  sort?: InputMaybe<Sort>;
+  sort_by?: InputMaybe<Sort_By>;
 };
 
 export type QueryServicesArgs = {
-  ids?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  ids?: InputMaybe<Array<Scalars['ID']['input']>>;
+  sort?: InputMaybe<Sort>;
+  sort_by?: InputMaybe<Sort_By>;
 };
+
+export enum Sort {
+  Asc = 'ASC',
+  Desc = 'DESC',
+}
+
+export enum Sort_By {
+  CreatedAt = 'CREATED_AT',
+  UpdatedAt = 'UPDATED_AT',
+}
 
 export type Service = {
   __typename?: 'Service';
@@ -68,6 +105,18 @@ export type Service = {
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
   updated_at: Scalars['DateTime']['output'];
+};
+
+export type ServiceConnection = {
+  __typename?: 'ServiceConnection';
+  edges: Array<ServiceEdge>;
+  pageInfo: PageInfo;
+};
+
+export type ServiceEdge = {
+  __typename?: 'ServiceEdge';
+  cursor: Scalars['String']['output'];
+  node: Service;
 };
 
 export type SubmitEnquiryInput = {
@@ -149,11 +198,19 @@ export type ResolversTypes = {
   CreateServiceInput: CreateServiceInput;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']['output']>;
   Enquiry: ResolverTypeWrapper<Enquiry>;
+  EnquiryConnection: ResolverTypeWrapper<EnquiryConnection>;
+  EnquiryEdge: ResolverTypeWrapper<EnquiryEdge>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
+  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   JSON: ResolverTypeWrapper<Scalars['JSON']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
+  PageInfo: ResolverTypeWrapper<PageInfo>;
   Query: ResolverTypeWrapper<{}>;
+  SORT: Sort;
+  SORT_BY: Sort_By;
   Service: ResolverTypeWrapper<Service>;
+  ServiceConnection: ResolverTypeWrapper<ServiceConnection>;
+  ServiceEdge: ResolverTypeWrapper<ServiceEdge>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
   SubmitEnquiryInput: SubmitEnquiryInput;
 };
@@ -164,11 +221,17 @@ export type ResolversParentTypes = {
   CreateServiceInput: CreateServiceInput;
   DateTime: Scalars['DateTime']['output'];
   Enquiry: Enquiry;
+  EnquiryConnection: EnquiryConnection;
+  EnquiryEdge: EnquiryEdge;
   ID: Scalars['ID']['output'];
+  Int: Scalars['Int']['output'];
   JSON: Scalars['JSON']['output'];
   Mutation: {};
+  PageInfo: PageInfo;
   Query: {};
   Service: Service;
+  ServiceConnection: ServiceConnection;
+  ServiceEdge: ServiceEdge;
   String: Scalars['String']['output'];
   SubmitEnquiryInput: SubmitEnquiryInput;
 };
@@ -197,6 +260,24 @@ export type EnquiryResolvers<ContextType = any, ParentType extends ResolversPare
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type EnquiryConnectionResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['EnquiryConnection'] = ResolversParentTypes['EnquiryConnection'],
+> = {
+  edges?: Resolver<Array<ResolversTypes['EnquiryEdge']>, ParentType, ContextType>;
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type EnquiryEdgeResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['EnquiryEdge'] = ResolversParentTypes['EnquiryEdge'],
+> = {
+  cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  node?: Resolver<ResolversTypes['Enquiry'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export interface JsonScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['JSON'], any> {
   name: 'JSON';
 }
@@ -206,9 +287,25 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   submitEnquiry?: Resolver<ResolversTypes['Enquiry'], ParentType, ContextType, Partial<MutationSubmitEnquiryArgs>>;
 };
 
+export type PageInfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['PageInfo'] = ResolversParentTypes['PageInfo']> = {
+  endCursor?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  hasNextPage?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  enquiries?: Resolver<Maybe<Array<Maybe<ResolversTypes['Enquiry']>>>, ParentType, ContextType, Partial<QueryEnquiriesArgs>>;
-  services?: Resolver<Maybe<Array<Maybe<ResolversTypes['Service']>>>, ParentType, ContextType, Partial<QueryServicesArgs>>;
+  enquiries?: Resolver<
+    Maybe<ResolversTypes['EnquiryConnection']>,
+    ParentType,
+    ContextType,
+    RequireFields<QueryEnquiriesArgs, 'first' | 'sort' | 'sort_by'>
+  >;
+  services?: Resolver<
+    Maybe<ResolversTypes['ServiceConnection']>,
+    ParentType,
+    ContextType,
+    RequireFields<QueryServicesArgs, 'first' | 'sort' | 'sort_by'>
+  >;
 };
 
 export type ServiceResolvers<ContextType = any, ParentType extends ResolversParentTypes['Service'] = ResolversParentTypes['Service']> = {
@@ -220,13 +317,36 @@ export type ServiceResolvers<ContextType = any, ParentType extends ResolversPare
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type ServiceConnectionResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['ServiceConnection'] = ResolversParentTypes['ServiceConnection'],
+> = {
+  edges?: Resolver<Array<ResolversTypes['ServiceEdge']>, ParentType, ContextType>;
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type ServiceEdgeResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['ServiceEdge'] = ResolversParentTypes['ServiceEdge'],
+> = {
+  cursor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  node?: Resolver<ResolversTypes['Service'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type Resolvers<ContextType = any> = {
   DateTime?: GraphQLScalarType;
   Enquiry?: EnquiryResolvers<ContextType>;
+  EnquiryConnection?: EnquiryConnectionResolvers<ContextType>;
+  EnquiryEdge?: EnquiryEdgeResolvers<ContextType>;
   JSON?: GraphQLScalarType;
   Mutation?: MutationResolvers<ContextType>;
+  PageInfo?: PageInfoResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Service?: ServiceResolvers<ContextType>;
+  ServiceConnection?: ServiceConnectionResolvers<ContextType>;
+  ServiceEdge?: ServiceEdgeResolvers<ContextType>;
 };
 
 export type DirectiveResolvers<ContextType = any> = {
