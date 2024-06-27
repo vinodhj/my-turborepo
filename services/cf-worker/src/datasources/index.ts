@@ -124,7 +124,7 @@ export class CfWorkersDataSource {
       };
     } catch (error) {
       console.log(error);
-      throw new GraphQLError('Failed to fetc all services with pagination', {
+      throw new GraphQLError('Failed to fetch all services with pagination', {
         extensions: {
           code: 'INTERNAL_SERVER_ERROR',
           error,
