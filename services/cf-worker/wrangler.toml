@@ -8,3 +8,4 @@ compatibility_flags = ["nodejs_compat"]
 binding = "DB" # i.e. available in your Worker on env.DB
 database_name = "d1-db"
 database_id = "1f8f6092-5b22-4ef1-a6ef-1b22a8a92e6a"
+migrations_dir = "db/migrations"
