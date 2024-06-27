@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { YogaSchemaDefinition, createYoga } from 'graphql-yoga';
 import { CfWorkersDataSource } from './datasources';
 import { schema } from './schemas';
@@ -15,11 +16,11 @@ export interface YogaInitialContext {
 
 export default {
   async fetch(request: Request, env: Env) {
-    const url = new URL(request.url);
+    // const url = new URL(request.url);
     const db = drizzle(env.DB);
-    const datasources = {
-      cfWorkersDataSource: new CfWorkersDataSource({ db }),
-    };
+    // const datasources = {
+    //   cfWorkersDataSource: new CfWorkersDataSource({ db }),
+    // };
 
     const yoga = createYoga({
       schema: schema as YogaSchemaDefinition<object, YogaInitialContext>,

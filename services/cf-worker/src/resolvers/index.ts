@@ -1,4 +1,3 @@
-import { Service } from 'generated';
 import { Mutation } from './mutations';
 import { Query } from './queries';
 import { CfWorkersDataSource } from '@src/datasources';

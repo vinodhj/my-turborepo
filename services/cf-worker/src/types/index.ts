@@ -34,9 +34,44 @@ export const typeDefs = gql`
     description: String
   }
 
+  enum SORT {
+    ASC
+    DESC
+  }
+
+  enum SORT_BY {
+    CREATED_AT
+    UPDATED_AT
+  }
+
+  type EnquiryConnection {
+    edges: [EnquiryEdge!]!
+    pageInfo: PageInfo!
+  }
+
+  type EnquiryEdge {
+    cursor: String!
+    node: Enquiry!
+  }
+
+  type ServiceConnection {
+    edges: [ServiceEdge!]!
+    pageInfo: PageInfo!
+  }
+
+  type ServiceEdge {
+    cursor: String!
+    node: Service!
+  }
+
+  type PageInfo {
+    endCursor: String
+    hasNextPage: Boolean!
+  }
+
   type Query {
-    enquiries(ids: [ID]): [Enquiry]
-    services(ids: [ID]): [Service]
+    enquiries(ids: [ID!], first: Int = 10, after: String, sort: SORT = DESC, sort_by: SORT_BY = CREATED_AT): EnquiryConnection
+    services(ids: [ID!], first: Int = 10, after: String, sort: SORT = DESC, sort_by: SORT_BY = CREATED_AT): ServiceConnection
   }
 
   type Mutation {
