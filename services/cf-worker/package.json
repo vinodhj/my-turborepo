@@ -12,8 +12,8 @@
     "lint": "eslint .",
     "generate": "graphql-codegen",
     "migrate": "./migrate.sh",
-    "migration-list": "wrangler d1 migrations list d1-db",
-    "migration-apply-production": "wrangler d1 migrations apply d1-db --remote"
+    "migration-list": "wrangler d1 migrations list DB",
+    "migration-apply-production": "wrangler d1 migrations apply DB--remote"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.4.5",
